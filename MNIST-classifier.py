@@ -57,12 +57,12 @@ with tf.Graph().as_default():
     saver = tf.train.Saver()
     with tf.Session() as sess:
         sess.run(init_op)
-        #saver.restore(sess, './save/model.ckpt')
+        #saver.restore(sess, './model.ckpt')   #<--Uncomment to reload saved, trained model parameters
         for epoch in range(training_epochs):
             feed_dict = {x : X, y : Y}
             sess.run(train_op, feed_dict=feed_dict)
             cost_curr = sess.run(cost, feed_dict=feed_dict)
             if epoch % 10 == 0:
             	print(cost_curr)
-            	saver.save(sess, './save/model.ckpt')
+            	saver.save(sess, './model.ckpt')
     print("Optimization Finished!")
